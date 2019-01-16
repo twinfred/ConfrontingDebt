@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
+const session = require('express-session');
 
 module.exports = {
     index: (req, res) => {
-        var context = {}
+        var context = {};
+        console.log("--- USER ID ---");
+        console.log(req.session.user_id);
         User.find({}, (err, users) =>{
-            console.log(users);
             if(users){
                 context.users = users;
-                console.log("hii");
-                console.log(context);
                 res.render("public/index", context);
             }else{
                 context.users = {};
-                console.log("hello")
-                console.log(context);
                 res.render("public/index", context);
             }
         })

@@ -1,9 +1,18 @@
 <h1>Tim Winfred</h1>
+<h2>Create An Account</h2>
+<% if(messages.error) { %>
+    <p>Error(s):</p>
+    <ul>
+    <% for (var x in messages.error) { %>
+        <li><%= messages.error[x] %></li>
+    <% } %>
+    </ul>
+<% } %>
 <form action="/api/users" method="post">
-    <input type="text" name="fname" id="fname">
-    <input type="text" name="lname" id="lname">
-    <input type="text" name="email" id="email">
-    <input type="text" name="password" id="password">
+    <input type="text" name="fname" id="fname" placeholder="First Name">
+    <input type="text" name="lname" id="lname" placeholder="Last Name">
+    <input type="text" name="email" id="email" placeholder="Email">
+    <input type="text" name="password" id="password" placeholder="Password">
     <input type="submit" value="Submit">
 </form>
 
