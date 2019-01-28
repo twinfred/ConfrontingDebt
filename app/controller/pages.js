@@ -7,6 +7,7 @@ module.exports = {
         var context = {};
         console.log("--- USER ID ---");
         console.log(req.session.user_id);
+        context.user_id = req.session.user_id;
         User.find({}, (err, users) =>{
             if(users){
                 context.users = users;
