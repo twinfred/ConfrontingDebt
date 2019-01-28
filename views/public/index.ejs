@@ -16,6 +16,10 @@
     <input type="submit" value="Submit">
 </form>
 
+<% if(user_id) { %>
+    <a href="/logout">Logout</a>
+<% } %>
+
 <h2>Users</h2>
     <% for(x in users) { %>
         <tr>

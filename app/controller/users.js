@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const User = require('./../models/user');
 var bcrypt = require('bcryptjs');
 const flash = require('express-flash');
-const session = require('express-session');
 
 module.exports = {
     getUsers:
