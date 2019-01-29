@@ -8,29 +8,27 @@ module.exports = {
         (req, res) => {
             User.find({}, (err, users) => {
                 if(err){
-                    res.json({message: "Error", error: err});
+                    return res.json({message: "Error", error: err});
                 }else{
-                    res.json({message: "Success", data: users});
+                    return res.json({message: "Success", data: users});
                 }
             });
         },
     getUserById:
-    (req, res) => {
-        User.findOne({_id: req.params.id}, (err, user) => {
-            if(!user){
-                res.json({message: "Error", error: "This user isn't in the database."});
-            }else if(err){
-                res.json({message: "Error", error: err});
-            }else{
-                res.json({message: "Success", data: user});
-            }
-        });
-    },
+        (req, res) => {
+            User.findOne({_id: req.params.id}, (err, user) => {
+                if(!user){
+                    return res.json({message: "Error", error: "This user isn't in the database."});
+                }else if(err){
+                    return res.json({message: "Error", error: err});
+                }else{
+                    return res.json({message: "Success", data: user});
+                }
+            });
+        },
      createUser:
         (req, res) => {
-            console.log(req.body);
             if(req.session.user_id){
-                console.log("Already logged in");
                 req.flash("error", "Please log out before creating a new account.");
                 return res.redirect('/');
             }
@@ -48,22 +46,17 @@ module.exports = {
                 bcrypt.genSalt(10, function(err, salt) {
                     bcrypt.hash(req.body.password, salt, function(err, hash) {
                         if(err){
-                            console.log("--- ALERT: Hash Error ---");
-                            console.log(err);
                             return res.redirect('/');
                         }else{
-                            // Security: Need to add logic to prevent database injection
+                            // TODO - Security: Need to add logic to prevent database injection
                             newUser.email = req.body.email;
                             newUser.fname = req.body.fname;
                             newUser.lname = req.body.lname;
                             newUser.password = hash;
                             newUser.save(err => {
                                 if(err){
-                                    console.log("--- ALERT: User Save Err ---");
-                                    console.log(err);
                                     return res.redirect('/');
                                 }else{
-                                    console.log("new user created");
                                     req.session.user_id = newUser._id;
                                     return res.redirect('/');
                                 }
@@ -75,31 +68,39 @@ module.exports = {
             });
         },
     updateUser:
-        (req, res)=>{
-            User.findOne({_id: req.params.id}, (err, user)=>{
+        (req, res) => {
+            User.findOne({_id: req.params.id}, (err, user) => {
                 if(!user){
-                    res.json({message: "Error", error: "This user isn't in the database"});
+                    return res.json({message: "Error", error: "This user isn't in the database"});
+                }else if(err){
+                    return res.json({message: "Error", error: err});
                 }else{
-                    User.update(user, req.body, (err, updatedUser)=>{
+                    User.update(user, req.body, (err, updatedUser) => {
                         if(err){
-                            res.json({message: "Error", error: err})
+                            return res.json({message: "Error", error: err});
                         }else{
-                            res.json({message: "Success", data: updatedUser});
+                            return res.json({message: "Success", data: updatedUser});
                         }
-                    })
+                    });
                 }
-            })
+            });
         },
     destroyUser:
-        (req, res)=>{
+        (req, res) => {
             User.findOne({_id: req.params.id}, (err, user)=>{
                 if(!user){
-                    res.json({message: "Error", error: "This user isn't in the database"});
+                    return res.json({message: "Error", error: "This user isn't in the database"});
+                }else if(err){
+                    return res.json({message: "Error", error: err});
                 }else{
-                    User.remove(user, (err)=>{
-                        res.json({message: "Success"});
-                    })
+                    User.remove(user, (err) => {
+                        if(err){
+                            return res.json({message: "Error", error: err});
+                        }else{
+                            return res.json({message: "Success"});
+                        }
+                    });
                 }
-            })
+            });
         },
 }
