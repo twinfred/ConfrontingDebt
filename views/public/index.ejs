@@ -21,6 +21,7 @@
 <% } %>
 
 <h2>Users</h2>
+<table>
 <% for(x in users) { %>
     <tr>
         <td><%= users[x].fname %></td>
@@ -28,6 +29,7 @@
         <td><%= users[x].email %></td>
     </tr>
 <% } %>
+</table>
 
 <h2>Create Text Content</h2>
 <form action="/api/contents" method="post">
@@ -37,9 +39,40 @@
 </form>
 
 <h2>Contents</h2>
+<table>
 <% for(x in contents) { %>
     <tr>
         <td><%= contents[x].name %></td>
         <td><%= contents[x].content %></td>
     </tr>
 <% } %>
+</table>
+
+<h2>Create A Blog Post</h2>
+<form action="/api/blogs" method="post">
+    <input type="text" name="blogTitle" id="blogTitle" placeholder="Blog Title">
+    <textarea name="blogBody" id="blogBody" placeholder="Blog Body HTML"></textarea>
+    <input type="text" name="blogDescription" id="blogDescription" placeholder="Blog Description">
+    <input type="text" name="blogKeywords" id="blogKeywords" placeholder="Blog Keywords">
+    <input type="text" name="blogFeaturedImage" id="blogFeaturedImage" placeholder="Featured Image">
+    <input type="text" name="blogOgTitle" id="blogOgTitle" placeholder="Blog og:title">
+    <input type="text" name="blogOgDescription" id="blogOgDescription" placeholder="Blog og:description">
+    <input type="text" name="blogOgImage" id="blogOgImage" placeholder="Blog og:image">
+    <input type="submit" value="Submit">
+</form>
+
+<h2>Blogs</h2>
+<table>
+<% for(x in blogs) { %>
+    <tr>
+        <td><%= blogs[x].title %></td>
+        <td><%= blogs[x].body %></td>
+        <td><%= blogs[x].metaDescription %></td>
+        <td><%= blogs[x].metaKeywords %></td>
+        <td style="width: 200px"><%= blogs[x].featuredImage %></td>
+        <td style="display: none"><%= blogs[x].ogTitle %></td>
+        <td style="display: none"><%= blogs[x].ogDescription %></td>
+        <td style="display: none"><%= blogs[x].ogImage %></td>
+    </tr>
+<% } %>
+</table>
