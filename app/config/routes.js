@@ -2,6 +2,7 @@ const pageController = require('../controller/pages');
 const redirectController = require('../controller/redirects');
 const userController = require('../controller/users');
 const contentController = require('../controller/contents');
+const blogController = require('../controller/blogs');
 
 module.exports = function(app){
     // Pages
@@ -20,4 +21,10 @@ module.exports = function(app){
     app.post('/api/contents', contentController.createContent);
     app.put('api/contents/:id', contentController.updateContent);
     app.delete('api/contents/:id', contentController.destroyContent);
+    // Blog API
+    app.get('/api/blogs', blogController.getBlogs);
+    app.get('/api/blogs/:id', blogController.getBlogById);
+    app.post('/api/blogs', blogController.createBlog);
+    app.put('api/blogs/:id', blogController.updateBlog);
+    app.delete('api/blogs/:id', blogController.destroyBlog);
 }

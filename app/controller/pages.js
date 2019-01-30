@@ -1,15 +1,28 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 const Content = mongoose.model('contents');
+const Blog = mongoose.model('blogs');
+
+function findBlogs(context, req, res){
+    Blog.find({}, (err, blogs) => {
+        if(blogs){
+            context.blogs = blogs;
+            return res.render("public/index", context);
+        }else{
+            context.blogs = {};
+            return res.render("public/index", context);
+        }
+    });
+}
 
 function findContents(context, req, res){
     Content.find({}, (err, contents) => {
         if(contents){
             context.contents = contents;
-            return res.render("public/index", context);
+            findBlogs(context, req, res);
         }else{
-            content.contents = {};
-            return res.render("public/index", context);
+            context.contents = {};
+            findBlogs(context, req, res);
         }
     });
 }
