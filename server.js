@@ -8,7 +8,7 @@ const port = 8000;
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/static'));
+app.use('/static', express.static(__dirname + '/static'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
     secret: 'timssupersecretawesomekeyisalmostasawesomeasheis',

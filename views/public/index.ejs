@@ -12,7 +12,7 @@
     <input type="text" name="fname" id="fname" placeholder="First Name">
     <input type="text" name="lname" id="lname" placeholder="Last Name">
     <input type="text" name="email" id="email" placeholder="Email">
-    <input type="text" name="password" id="password" placeholder="Password">
+    <input type="password" name="password" id="password" placeholder="Password">
     <input type="submit" value="Submit">
 </form>
 
@@ -27,6 +27,9 @@
         <td><%= users[x].fname %></td>
         <td><%= users[x].lname %></td>
         <td><%= users[x].email %></td>
+        <td>
+            <button class="deleteBtn" id="<%= users[x].id %>" onclick="deleteUser('<%= users[x].id %>')">Delete</button>
+        </td>
     </tr>
 <% } %>
 </table>
@@ -76,3 +79,4 @@
     </tr>
 <% } %>
 </table>
+<script  type="text/javascript" src="/static/script/main.js"></script>
