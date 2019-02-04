@@ -28,7 +28,7 @@
         <td><%= users[x].lname %></td>
         <td><%= users[x].email %></td>
         <td>
-            <button class="deleteBtn" id="<%= users[x].id %>" onclick="deleteUser('<%= users[x].id %>')">Delete</button>
+            <button class="deleteBtn" id="<%= users[x].id %>" onclick="deleteThis('user','<%= users[x].id %>')">Delete</button>
         </td>
     </tr>
 <% } %>
@@ -47,6 +47,9 @@
     <tr>
         <td><%= contents[x].name %></td>
         <td><%= contents[x].content %></td>
+        <td>
+            <button class="deleteBtn" id="<%= contents[x].id %>" onclick="deleteThis('content','<%= contents[x].id %>')">Delete</button>
+        </td>
     </tr>
 <% } %>
 </table>
@@ -76,6 +79,9 @@
         <td style="display: none"><%= blogs[x].ogTitle %></td>
         <td style="display: none"><%= blogs[x].ogDescription %></td>
         <td style="display: none"><%= blogs[x].ogImage %></td>
+        <td>
+            <button class="deleteBtn" id="<%= blogs[x].id %>" onclick="deleteThis('blog','<%= blogs[x].id %>')">Delete</button>
+        </td>
     </tr>
 <% } %>
 </table>

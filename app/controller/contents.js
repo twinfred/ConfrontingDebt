@@ -58,6 +58,7 @@ module.exports = {
         },
     destroyContent:
         (req, res) => {
+            console.log('delete content');
             Content.findOne({_id: req.params.id}, (err, content) => {
                 if(!content){
                     return res.json({message: "Error", error: "This content isn't in the database."});

@@ -19,12 +19,12 @@ module.exports = function(app){
     app.get('/api/contents', contentController.getContents);
     app.get('/api/contents/:id', contentController.getContentById);
     app.post('/api/contents', contentController.createContent);
-    app.put('api/contents/:id', contentController.updateContent);
-    app.delete('api/contents/:id', contentController.destroyContent);
+    app.put('/api/contents/:id', contentController.updateContent);
+    app.delete('/api/contents/:id', contentController.destroyContent);
     // Blog API
     app.get('/api/blogs', blogController.getBlogs);
     app.get('/api/blogs/:id', blogController.getBlogById);
     app.post('/api/blogs', blogController.createBlog);
-    app.put('api/blogs/:id', blogController.updateBlog);
-    app.delete('api/blogs/:id', blogController.destroyBlog);
+    app.put('/api/blogs/:id', blogController.updateBlog);
+    app.delete('/api/blogs/:id', blogController.destroyBlog);
 }

@@ -1,10 +1,22 @@
-const usersUrl = 'http://localhost:8000/api/users'
-const xhr = new XMLHttpRequest();
-
+const siteUrl = 'http://localhost:8000';
 // Delete Button - Send Delete Request
-function deleteUser(id){
+function deleteThis(type, id){
+    var xhr = new XMLHttpRequest();
+    var typeUrl;
+    console.log(type);
+    if(type == 'user'){
+        console.log('user');
+        typeUrl = siteUrl + '/api/users';
+    }else if(type == 'content'){
+        console.log('content');
+        typeUrl = siteUrl + '/api/contents';
+    }else if(type =='blog'){
+        console.log('blog');
+        typeUrl = siteUrl + '/api/blogs';
+    }
     console.log(id);
-    xhr.open("DELETE", usersUrl + '/' + id , true);
+    console.log(siteUrl);
+    xhr.open("DELETE", typeUrl + '/' + id , true);
     xhr.onload = function () {
         var response = JSON.parse(xhr.responseText);
         if (xhr.readyState == 4 && xhr.status == "200") {
