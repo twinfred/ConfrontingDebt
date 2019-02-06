@@ -53,13 +53,20 @@ module.exports = {
                             newUser.fname = req.body.fname;
                             newUser.lname = req.body.lname;
                             newUser.password = hash;
-                            newUser.save(err => {
-                                if(err){
-                                    return res.redirect('/');
+                            User.find({}, (err, users) => {
+                                if(users.length === 0){
+                                    newUser.user_level = 9;
                                 }else{
-                                    req.session.user_id = newUser._id;
-                                    return res.redirect('/');
+                                    newUser.user_level = 0;
                                 }
+                                newUser.save(err => {
+                                    if(err){
+                                        return res.redirect('/');
+                                    }else{
+                                        req.session.user_id = newUser._id;
+                                        return res.redirect('/');
+                                    }
+                                });
                             });
                         }
                     });

@@ -64,6 +64,7 @@ module.exports = {
         },
     destroyBlog:
         (req, res) => {
+            console.log('delete blog');
             Blog.findOne({_id: req.params.id}, (err, blog) => {
                 if(!blog){
                     return res.json({message: "Error", error: "This blog isn't in the database."});

@@ -12,7 +12,13 @@
     <input type="text" name="fname" id="fname" placeholder="First Name">
     <input type="text" name="lname" id="lname" placeholder="Last Name">
     <input type="text" name="email" id="email" placeholder="Email">
-    <input type="text" name="password" id="password" placeholder="Password">
+    <input type="password" name="password" id="password" placeholder="Password">
+    <input type="submit" value="Submit">
+</form>
+<h2>Login</h2>
+<form action="/login" method="post">
+    <input type="text" name="email" id="email" placeholder="Email">
+    <input type="password" name="password" id="password" placeholder="Password">
     <input type="submit" value="Submit">
 </form>
 
@@ -27,6 +33,9 @@
         <td><%= users[x].fname %></td>
         <td><%= users[x].lname %></td>
         <td><%= users[x].email %></td>
+        <td>
+            <button class="deleteBtn" id="<%= users[x].id %>" onclick="deleteThis('user','<%= users[x].id %>')">Delete</button>
+        </td>
     </tr>
 <% } %>
 </table>
@@ -44,6 +53,9 @@
     <tr>
         <td><%= contents[x].name %></td>
         <td><%= contents[x].content %></td>
+        <td>
+            <button class="deleteBtn" id="<%= contents[x].id %>" onclick="deleteThis('content','<%= contents[x].id %>')">Delete</button>
+        </td>
     </tr>
 <% } %>
 </table>
@@ -73,6 +85,10 @@
         <td style="display: none"><%= blogs[x].ogTitle %></td>
         <td style="display: none"><%= blogs[x].ogDescription %></td>
         <td style="display: none"><%= blogs[x].ogImage %></td>
+        <td>
+            <button class="deleteBtn" id="<%= blogs[x].id %>" onclick="deleteThis('blog','<%= blogs[x].id %>')">Delete</button>
+        </td>
     </tr>
 <% } %>
 </table>
+<script  type="text/javascript" src="/static/script/main.js"></script>
