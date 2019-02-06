@@ -8,6 +8,7 @@ module.exports = function(app){
     // Pages
     app.get('/', pageController.index);
     // Redirect Routes
+    app.post('/login', redirectController.login);
     app.get('/logout', redirectController.logout);
     // User API
     app.get('/api/users', userController.getUsers);
