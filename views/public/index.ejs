@@ -9,16 +9,16 @@
 <% } %>
 <h2>Create An Account</h2>
 <form action="/api/users" method="post">
-    <input type="text" name="fname" id="fname" placeholder="First Name">
-    <input type="text" name="lname" id="lname" placeholder="Last Name">
-    <input type="text" name="email" id="email" placeholder="Email">
-    <input type="password" name="password" id="password" placeholder="Password">
+    <input type="text" name="fname" placeholder="First Name">
+    <input type="text" name="lname" placeholder="Last Name">
+    <input type="text" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Password">
     <input type="submit" value="Submit">
 </form>
 <h2>Login</h2>
 <form action="/login" method="post">
-    <input type="text" name="email" id="email" placeholder="Email">
-    <input type="password" name="password" id="password" placeholder="Password">
+    <input type="text" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Password">
     <input type="submit" value="Submit">
 </form>
 
@@ -26,17 +26,42 @@
     <a href="/logout">Logout</a>
 <% } %>
 
-<h2>Users</h2>
+<h2>Update Users</h2>
 <table>
 <% for(x in users) { %>
-    <tr>
-        <td><%= users[x].fname %></td>
-        <td><%= users[x].lname %></td>
-        <td><%= users[x].email %></td>
-        <td>
-            <button class="deleteBtn" id="<%= users[x].id %>" onclick="deleteThis('user','<%= users[x].id %>')">Delete</button>
-        </td>
-    </tr>
+    <form>
+        <tr>
+            <td>
+                <input type="text" name="fname" value="<%= users[x].fname %>">
+            </td>
+            <td>
+                <input type="text" name="lname" value="<%= users[x].lname %>">
+            </td>
+            <td>
+                <input type="text" name="email" value="<%= users[x].email %>">
+            </td>
+            <td>
+                <input type="password" name="password" placeholder="New Password">
+            </td>
+            <td>
+                <select name="user_level">
+                    <% for(var i=0; i < 10; i++){ %>
+                        <% if(i !== users[x].user_level) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% }else{ %>
+                            <option value="<%= i %>" selected="selected"><%= i %></option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </td>
+            <td>
+                <button class="updateBtn" onclick="updateThis('user','<%= users[x].id %>')">Update</button>
+            </td>
+            <td>
+                <button class="deleteBtn" onclick="deleteThis('user','<%= users[x].id %>')">Delete</button>
+            </td>
+        </tr>
+    </form>
 <% } %>
 </table>
 
