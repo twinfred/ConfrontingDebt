@@ -29,8 +29,7 @@
 <h2>Update Users</h2>
 <table>
 <% for(x in users) { %>
-    <form action="/api/users/<%= users[x].id %>" method="post">
-        <input type="hidden" name="_method" value="put">
+    <form>
         <tr>
             <td>
                 <input type="text" name="fname" value="<%= users[x].fname %>">
@@ -56,10 +55,10 @@
                 </select>
             </td>
             <td>
-                <input type="submit" value="Update">
+                <button class="updateBtn" onclick="updateThis('user','<%= users[x].id %>')">Update</button>
             </td>
             <td>
-                <button class="deleteBtn" id="<%= users[x].id %>" onclick="deleteThis('user','<%= users[x].id %>')">Delete</button>
+                <button class="deleteBtn" onclick="deleteThis('user','<%= users[x].id %>')">Delete</button>
             </td>
         </tr>
     </form>

@@ -82,6 +82,12 @@ module.exports = {
                 }else if(err){
                     return res.json({message: "Error", error: err});
                 }else{
+                    if(!req.body.user_level){
+                        req.body.user_level = user.user_level;
+                    }
+                    if(!req.body.password || req.body.password == ""){
+                        req.body.password = user.password;
+                    }
                     User.update(user, req.body, (err, updatedUser) => {
                         if(err){
                             return res.json({message: "Error", error: err});
